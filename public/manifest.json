@@ -1,0 +1,78 @@
+{
+  "name": "Bolpur Mart - Quick Commerce",
+  "short_name": "Bolpur Mart",
+  "description": "World-class quick commerce app for groceries, vegetables, fruits, medicine, and food delivery in Bolpur",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#f0f4f8",
+  "theme_color": "#0D7377",
+  "orientation": "portrait-primary",
+  "scope": "/",
+  "lang": "en",
+  "dir": "ltr",
+  "categories": ["shopping", "food", "lifestyle"],
+  "icons": [
+    {
+      "src": "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTkyIiBoZWlnaHQ9IjE5MiIgdmlld0JveD0iMCAwIDE5MiAxOTIiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIxOTIiIGhlaWdodD0iMTkyIiByeD0iNDAiIGZpbGw9IiMwRDczNzciLz4KPHN2ZyB4PSI0OCIgeT0iNDgiIHdpZHRoPSI5NiIgaGVpZ2h0PSI5NiIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9IndoaXRlIiBzdHJva2Utd2lkdGg9IjIiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCI+CjxwYXRoIGQ9Im02IDJjMCAwIDMuNS0yIDgtMnM4IDIgOCAyYzAgMS01IDUuNS04IDU1czggNTQgOCA1NWMwIDAtMy41IDItOCAycy04LTItOC0yYzAtMS0xLTU0LTEtNTVzOC01NC0wLTU1eiIvPgo8L3N2Zz4KPC9zdmc+",
+      "sizes": "192x192",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNTEyIiBoZWlnaHQ9IjUxMiIgdmlld0JveD0iMCAwIDUxMiA1MTIiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSI1MTIiIGhlaWdodD0iNTEyIiByeD0iMTA4IiBmaWxsPSIjMEQ3Mzc3Ii8+CjxzdmcgeD0iMTI4IiB5PSIxMjgiIHdpZHRoPSIyNTYiIGhlaWdodD0iMjU2IiB2aWV3Qm94PSIwIDAgMjQgMjQiIGZpbGw9Im5vbmUiIHN0cm9rZT0id2hpdGUiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIj4KPHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSJ3aGl0ZSIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiPgo8cGF0aCBkPSJtNiAyIDE4IDBzMCA0LTcgOWMtNCA0LTcgMTAuNS03IDEwLjVzLTMtNi41LTctMTAuNWMtNy01LTctOS03LTl6Ii8+CjxjaXJjbGUgY3g9IjIwIiBjeT0iMjAiIHI9IjIiLz4KPGNpcmNsZSBjeD0iOSIgY3k9IjciIHI9IjIiLz4KPC9zdmc+Cjwvc3ZnPgo8L3N2Zz4=",
+      "sizes": "512x512",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTkyIiBoZWlnaHQ9IjE5MiIgdmlld0JveD0iMCAwIDE5MiAxOTIiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIxOTIiIGhlaWdodD0iMTkyIiByeD0iNDAiIGZpbGw9IiMwRDczNzciLz4KPHN2ZyB4PSI0OCIgeT0iNDgiIHdpZHRoPSI5NiIgaGVpZ2h0PSI5NiIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9IndoaXRlIiBzdHJva2Utd2lkdGg9IjIiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCI+CjxwYXRoIGQ9Im02IDJjMCAwIDMuNS0yIDgtMnM4IDIgOCAyYzAgMS01IDUuNS04IDU1czggNTQgOCA1NWMwIDAtMy41IDItOCAycy04LTItOC0yYzAtMS0xLTU0LTEtNTVzOC01NC0wLTU1eiIvPgo8L3N2Zz4KPC9zdmc+",
+      "sizes": "192x192",
+      "type": "image/svg+xml",
+      "purpose": "maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Search Products",
+      "short_name": "Search",
+      "description": "Search for products",
+      "url": "/search",
+      "icons": [
+        {
+          "src": "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iOTYiIGhlaWdodD0iOTYiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMEQ3Mzc3IiBzdHJva2Utd2lkdGg9IjIiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCI+PGNpcmNsZSBjeD0iMTEiIGN5PSIxMSIgcj0iOCIvPjxwYXRoIGQ9Im0yMSAyMS00LjM1LTQuMzUiLz48L3N2Zz4=",
+          "sizes": "96x96"
+        }
+      ]
+    },
+    {
+      "name": "Track Orders",
+      "short_name": "Orders",
+      "description": "View your order history",
+      "url": "/orders",
+      "icons": [
+        {
+          "src": "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iOTYiIGhlaWdodD0iOTYiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMEQ3Mzc3IiBzdHJva2Utd2lkdGg9IjIiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCI+PHBhdGggZD0iTTE0IDJIMmExIDEgMCAwIDAtMSAxdjE2YTEgMSAwIDAgMCAxIDFoMTJhMSAxIDAgMCAwIDEtMVY5eiIvPjxwb2x5bGluZSBwb2ludHM9IjE0LDIsMTQsOCwyMCw4Ii8+PGxpbmUgeDE9IjE2IiB5MT0iMTMiIHgyPSI4IiB5Mj0iMTMiLz48bGluZSB4MT0iMTYiIHkxPSIxNyIgeDI9IjgiIHkyPSIxNyIvPjxwb2x5bGluZSBwb2ludHM9IjEwLDksOSw5LDgsMTEiLz48L3N2Zz4=",
+          "sizes": "96x96"
+        }
+      ]
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzIwIiBoZWlnaHQ9IjU2OCIgdmlld0JveD0iMCAwIDMyMCA1NjgiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIzMjAiIGhlaWdodD0iNTY4IiByeD0iMjAiIGZpbGw9IiNmMGY0ZjgiLz4KPHR5dGUgZmlsbD0iYmxhY2siIGZvbnQtZmFtaWx5PSJzeXN0ZW0tdWkiIGZvbnQtc2l6ZT0iMTgiIGZvbnQtd2VpZ2h0PSJib2xkIj4KPHR0ZXh0IHg9IjE2MCIgeT0iODAiIHRleHQtYW5jaG9yPSJtaWRkbGUiPkJvbHB1ciBNYXJ0PC90dGV4dD4KPHR0ZXh0IHg9IjE2MCIgeT0iMTAwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LXNpemU9IjEyIiBmaWxsPSIjNjY2Ij5RdWljayBDb21tZXJjZSBBcHA8L3R0ZXh0Pgo8L3R5cGU+CjxyZWN0IHg9IjIwIiB5PSIxNDAiIHdpZHRoPSIyODAiIGhlaWdodD0iMTAwIiByeD0iMTAiIGZpbGw9IiMwRDczNzciLz4KPHR5cGUgZmlsbD0id2hpdGUiIGZvbnQtZmFtaWx5PSJzeXN0ZW0tdWkiIGZvbnQtc2l6ZT0iMTQiPgo8dHRleHQgeD0iNDAiIHk9IjE3MCI+RXZlbmluZyBNZW51IC0gNjowMCBQTSAtIDEyOjAwIEFNPC90dGV4dD4KPHR0ZXh0IHg9IjQwIiB5PSIyMDAiIGZvbnQtc2l6ZT0iMTIiPkJpcnlhbmkgJiBFdmVuaW5nIFNwZWNpYWxzIEF2YWlsYWJsZSBOb3c8L3R0ZXh0Pgo8L3R5cGU+CjxyZWN0IHg9IjIwIiB5PSIyODAiIHdpZHRoPSIxMzAiIGhlaWdodD0iMTQwIiByeD0iMTAiIGZpbGw9IndoaXRlIiBzdHJva2U9IiNlMGU0ZTciIHN0cm9rZS13aWR0aD0iMSIvPgo8dHlwZSBmaWxsPSJibGFjayIgZm9udC1mYW1pbHk9InN5c3RlbS11aSIgZm9udC1zaXplPSIxMiI+Cjx0dGV4dCB4PSI0MCIgeT0iMzgwIj5DaGlja2VuIEJpcnlhbmk8L3R0ZXh0Pgo8dHRleHQgeD0iNDAiIHk9IjQwMCIgZm9udC1zaXplPSIxMCI+4oK5Mjk5PC90dGV4dD4KPC90eXBlPgo8cmVjdCB4PSIxNzAiIHk9IjI4MCIgd2lkdGg9IjEzMCIgaGVpZ2h0PSIxNDAiIHJ4PSIxMCIgZmlsbD0id2hpdGUiIHN0cm9rZT0iI2UwZTRlNyIgc3Ryb2tlLXdpZHRoPSIxIi8+Cjx0eXBlIGZpbGw9ImJsYWNrIiBmb250LWZhbWlseT0ic3lzdGVtLXVpIiBmb250LXNpemU9IjEyIj4KPHR0ZXh0IHg9IjE5MCIgeT0iMzgwIj5TYW1vc2EgUGxhdHRlcjwvdHRleHQ+Cjx0dGV4dCB4PSIxOTAiIHk9IjQwMCIgZm9udC1zaXplPSIxMCI+4oK5ODA8L3R0ZXh0Pgo8L3R5cGU+CjxyZWN0IHg9IjIwIiB5PSI0ODAiIHdpZHRoPSIyODAiIGhlaWdodD0iNjAiIHJ4PSIzMCIgZmlsbD0iIzBENzM3NyIvPgo8dHlwZSBmaWxsPSJ3aGl0ZSIgZm9udC1mYW1pbHk9InN5c3RlbS11aSIgZm9udC1zaXplPSIxNiIgZm9udC13ZWlnaHQ9ImJvbGQiPgo8dHRleHQgeD0iMTYwIiB5PSI1MTgiIHRleHQtYW5jaG9yPSJtaWRkbGUiPlZpZXcgQ2FydCAtIOKCuTY1ODwvdHRleHQ+CjwvdHlwZT4KPC9zdmc+",
+      "sizes": "320x568",
+      "type": "image/svg+xml",
+      "form_factor": "narrow"
+    }
+  ],
+  "prefer_related_applications": false,
+  "edge_side_panel": {
+    "preferred_width": 480
+  },
+  "protocol_handlers": [
+    {
+      "protocol": "web+bolpurmart",
+      "url": "/?ref=%s"
+    }
+  ]
+}
