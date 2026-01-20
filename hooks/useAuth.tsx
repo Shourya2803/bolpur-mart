@@ -3,9 +3,9 @@
 import { useEffect, createContext, useContext } from "react";
 import { useAuthStore } from "@/stores/auth-store";
 import { AuthStore } from "@/types/auth";
-import { FirebaseAuthService } from "@/lib/firebase-services";
+import { auth } from "@/lib/firebase-client";
 
-const AuthContext = createContext<AuthStore | undefined>(undefined);
+// ...
 
 export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     const authStore = useAuthStore();
@@ -16,14 +16,17 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
             if (firebaseUser) {
                 try {
                     // Sync session cookie with backend
-                    const idToken = await firebaseUser.getIdToken();
-                    await fetch("/api/auth/login", {
-                        method: "POST",
-                        headers: {
-                            "Content-Type": "application/json",
-                        },
-                        body: JSON.stringify({ idToken }),
-                    });
+                    // Use auth.currentUser to ensure we have the method, as firebaseUser might be a plain object
+                    const idToken = await auth.currentUser?.getIdToken();
+                    if (idToken) {
+                        await fetch("/api/auth/login", {
+                            method: "POST",
+                            headers: {
+                                "Content-Type": "application/json",
+                            },
+                            body: JSON.stringify({ idToken }),
+                        });
+                    }
                 } catch (error) {
                     console.error("Failed to sync session:", error);
                 }

@@ -2,6 +2,7 @@ import { ReactNode } from "react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, Home, Search, Receipt, User } from "lucide-react";
+import { InstallButton } from "@/components/InstallButton";
 
 interface MobileLayoutProps {
   children: ReactNode;
@@ -49,72 +50,78 @@ export function MobileLayout({
               )}
             </div>
           </div>
+          <div className="flex items-center gap-2">
+            <InstallButton />
+          </div>
         </div>
-      </header>
+      </header >
 
       {/* Main Content */}
-      <div className={`flex-1 overflow-y-auto mobile-scroll border ${showBottomNav ? 'pb-20' : 'pb-4'}`}>
+      < div className={`flex-1 overflow-y-auto mobile-scroll border ${showBottomNav ? 'pb-20' : 'pb-4'}`
+      }>
         {children}
-      </div>
+      </div >
 
       {/* Bottom Navigation - Only show if showBottomNav is true */}
-      {showBottomNav && (
-        <nav
-          className="fixed bottom-0 left-0 right-0 max-w-md mx-auto bg-card border border-border z-50"
-          data-testid="bottom-navigation"
-        >
-          <div className="flex items-center justify-around py-3">
-            <Button
-              variant="ghost"
-              className={`flex flex-col items-center ${currentPage === 'home' ? 'text-primary' : 'text-muted-foreground'
-                }`}
-              asChild
-              data-testid="nav-home"
-            >
-              <Link href="/">
-                <Home size={20} />
-                <span className="text-xs mt-1">Home</span>
-              </Link>
-            </Button>
-            <Button
-              variant="ghost"
-              className={`flex flex-col items-center ${currentPage === 'search' ? 'text-primary' : 'text-muted-foreground'
-                }`}
-              asChild
-              data-testid="nav-search"
-            >
-              <Link href="/search">
-                <Search size={20} />
-                <span className="text-xs mt-1">Search</span>
-              </Link>
-            </Button>
-            <Button
-              variant="ghost"
-              className={`flex flex-col items-center ${currentPage === 'orders' ? 'text-primary' : 'text-muted-foreground'
-                }`}
-              asChild
-              data-testid="nav-orders"
-            >
-              <Link href="/orders">
-                <Receipt size={20} />
-                <span className="text-xs mt-1">Orders</span>
-              </Link>
-            </Button>
-            <Button
-              variant="ghost"
-              className={`flex flex-col items-center ${currentPage === 'account' ? 'text-primary' : 'text-muted-foreground'
-                }`}
-              asChild
-              data-testid="nav-account"
-            >
-              <Link href="/account">
-                <User size={20} />
-                <span className="text-xs mt-1">Account</span>
-              </Link>
-            </Button>
-          </div>
-        </nav>
-      )}
-    </div>
+      {
+        showBottomNav && (
+          <nav
+            className="fixed bottom-0 left-0 right-0 max-w-md mx-auto bg-card border border-border z-50"
+            data-testid="bottom-navigation"
+          >
+            <div className="flex items-center justify-around py-3">
+              <Button
+                variant="ghost"
+                className={`flex flex-col items-center ${currentPage === 'home' ? 'text-primary' : 'text-muted-foreground'
+                  }`}
+                asChild
+                data-testid="nav-home"
+              >
+                <Link href="/">
+                  <Home size={20} />
+                  <span className="text-xs mt-1">Home</span>
+                </Link>
+              </Button>
+              <Button
+                variant="ghost"
+                className={`flex flex-col items-center ${currentPage === 'search' ? 'text-primary' : 'text-muted-foreground'
+                  }`}
+                asChild
+                data-testid="nav-search"
+              >
+                <Link href="/search">
+                  <Search size={20} />
+                  <span className="text-xs mt-1">Search</span>
+                </Link>
+              </Button>
+              <Button
+                variant="ghost"
+                className={`flex flex-col items-center ${currentPage === 'orders' ? 'text-primary' : 'text-muted-foreground'
+                  }`}
+                asChild
+                data-testid="nav-orders"
+              >
+                <Link href="/orders">
+                  <Receipt size={20} />
+                  <span className="text-xs mt-1">Orders</span>
+                </Link>
+              </Button>
+              <Button
+                variant="ghost"
+                className={`flex flex-col items-center ${currentPage === 'account' ? 'text-primary' : 'text-muted-foreground'
+                  }`}
+                asChild
+                data-testid="nav-account"
+              >
+                <Link href="/account">
+                  <User size={20} />
+                  <span className="text-xs mt-1">Account</span>
+                </Link>
+              </Button>
+            </div>
+          </nav>
+        )
+      }
+    </div >
   );
 }
