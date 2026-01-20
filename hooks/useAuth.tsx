@@ -2,17 +2,18 @@
 
 import { useEffect, createContext, useContext } from "react";
 import { useAuthStore } from "@/stores/auth-store";
-import { AuthStore } from "@/types/auth";
+import { AuthStore, AuthUser } from "@/types/auth";
 import { auth } from "@/lib/firebase-client";
+import { FirebaseAuthService } from "@/lib/firebase-services";
 
-// ...
+const AuthContext = createContext<AuthStore | undefined>(undefined);
 
 export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     const authStore = useAuthStore();
 
     useEffect(() => {
         // Use the guarded service method instead of raw Firebase
-        const unsubscribe = FirebaseAuthService.onAuthStateChanged(async (firebaseUser) => {
+        const unsubscribe = FirebaseAuthService.onAuthStateChanged(async (firebaseUser: AuthUser | null) => {
             if (firebaseUser) {
                 try {
                     // Sync session cookie with backend
