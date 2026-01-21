@@ -12,69 +12,44 @@ interface BeforeInstallPromptEvent extends Event {
 }
 
 export function useInstallPrompt() {
-  const [installPrompt, setInstallPrompt] = useState<BeforeInstallPromptEvent | null>(null)
-  const [isInstallable, setIsInstallable] = useState(false)
+  const [deferredPrompt, setDeferredPrompt] = useState<any>(null);
+  const [canInstall, setCanInstall] = useState(false);
 
   useEffect(() => {
-    const handleBeforeInstallPrompt = (e: Event) => {
-      // Prevent the mini-infobar from appearing on mobile
-      e.preventDefault()
-      // Stash the event so it can be triggered later
-      setInstallPrompt(e as BeforeInstallPromptEvent)
-      setIsInstallable(true)
-    }
+    const handler = (e: any) => {
+      console.log('✅ beforeinstallprompt FIRED on Vercel!');
+      e.preventDefault();
+      setDeferredPrompt(e);
+      setCanInstall(true);
+    };
 
-    const handleAppInstalled = () => {
-      // Clear the deferredPrompt so it can be garbage collected
-      setInstallPrompt(null)
-      setIsInstallable(false)
-      console.log('PWA was installed')
-    }
-
-    window.addEventListener('beforeinstallprompt', handleBeforeInstallPrompt)
-    window.addEventListener('appinstalled', handleAppInstalled)
+    window.addEventListener('beforeinstallprompt', handler);
+    window.addEventListener('appinstalled', () => {
+      setDeferredPrompt(null);
+      setCanInstall(false);
+    });
 
     return () => {
-      window.removeEventListener('beforeinstallprompt', handleBeforeInstallPrompt)
-      window.removeEventListener('appinstalled', handleAppInstalled)
-    }
-  }, [])
+      window.removeEventListener('beforeinstallprompt', handler);
+    };
+  }, []);
 
   const installApp = async () => {
-    if (!installPrompt) {
-      // Fallback for browsers that don't support the install prompt
-      if (navigator.userAgent.includes('iPhone') || navigator.userAgent.includes('iPad')) {
-        alert('To install this app on iOS: tap the Share button and then "Add to Home Screen"')
-      } else if (navigator.userAgent.includes('Android')) {
-        alert('To install this app: tap the menu button in your browser and select "Add to Home Screen" or "Install App"')
-      } else {
-        alert('To install this app: look for "Install" or "Add to Home Screen" option in your browser menu')
+    if (deferredPrompt) {
+      deferredPrompt.prompt();
+      const { outcome } = await deferredPrompt.userChoice;
+      if (outcome === 'accepted') {
+        setDeferredPrompt(null);
+        setCanInstall(false);
       }
-      return
+      return;
     }
 
-    // Show the install prompt
-    await installPrompt.prompt()
+    // iOS fallback only
+    alert('iOS: Share → Add to Home Screen');
+  };
 
-    // Wait for the user to respond to the prompt
-    const { outcome } = await installPrompt.userChoice
-
-    if (outcome === 'accepted') {
-      console.log('User accepted the install prompt')
-    } else {
-      console.log('User dismissed the install prompt')
-    }
-
-    // Clear the prompt
-    setInstallPrompt(null)
-    setIsInstallable(false)
-  }
-
-  return {
-    installApp,
-    isInstallable,
-    canInstall: isInstallable || installPrompt !== null
-  }
+  return { installApp, canInstall };
 }
 
 export function InstallPrompt() {
