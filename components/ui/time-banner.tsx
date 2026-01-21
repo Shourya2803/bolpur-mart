@@ -1,9 +1,16 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import { Clock, Zap, Truck } from "lucide-react";
 import { useTimeSlot } from "@/hooks/use-time-slot";
 
 export function TimeBanner() {
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
   const {
     timeSlotDisplay,
     currentTimeSlot,
@@ -48,6 +55,8 @@ export function TimeBanner() {
   };
 
   const timeInfo = getTimeSlotInfo();
+
+  if (!mounted) return null;
 
   return (
     <div

@@ -51,7 +51,7 @@ export function LoginRequiredDialog({ open, onOpenChangeAction }: LoginRequiredD
                     <Button
                         variant="outline"
                         size="lg"
-                        className="w-full border-primary/20 hover:bg-primary/5 hover:text-primary transition-colors"
+                        className="w-full border-primary/20 hover:bg-primary/5 hover:text-primary transition-colors "
                         onClick={handleLogin}
                     >
                         <UserPlus className="mr-2 h-4 w-4" />

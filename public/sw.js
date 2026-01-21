@@ -1,4 +1,4 @@
-const CACHE_NAME = 'bolpur-mart-v2.1';
+const CACHE_NAME = 'bolpur-mart-v2.2';
 const OFFLINE_URL = '/offline.html';
 const CACHE_LIMIT = 50 * 1024 * 1024; // 50MB
 
@@ -58,13 +58,24 @@ self.addEventListener('fetch', (event) => {
     return;
   }
 
+  if (!event.request.url.startsWith('http')) return;
+  if (event.request.method !== 'GET') return;
+
   // Cache-First Strategy for static assets/images
   if (event.request.destination === 'image' || event.request.destination === 'style' || event.request.destination === 'script') {
     event.respondWith(
       caches.open(CACHE_NAME).then((cache) => {
         return cache.match(event.request).then((cachedResponse) => {
           const fetchedResponse = fetch(event.request).then((networkResponse) => {
-            cache.put(event.request, networkResponse.clone());
+            if (!networkResponse || networkResponse.status !== 200 || networkResponse.type !== 'basic') {
+              return networkResponse;
+            }
+
+            try {
+              cache.put(event.request, networkResponse.clone());
+            } catch (err) {
+              console.warn('Failed to cache:', event.request.url, err);
+            }
             checkCacheSizeAndPrune();
             return networkResponse;
           });
@@ -91,8 +102,17 @@ self.addEventListener('fetch', (event) => {
   event.respondWith(
     caches.match(event.request).then((cachedResponse) => {
       const fetchPromise = fetch(event.request).then((networkResponse) => {
+        if (!networkResponse || networkResponse.status !== 200 || networkResponse.type !== 'basic') {
+          return networkResponse;
+        }
+
+        const responseToCache = networkResponse.clone();
         caches.open(CACHE_NAME).then((cache) => {
-          cache.put(event.request, networkResponse.clone());
+          try {
+            cache.put(event.request, responseToCache);
+          } catch (err) {
+            console.warn('Failed to cache:', event.request.url, err);
+          }
         });
         return networkResponse;
       });

@@ -500,7 +500,7 @@ export function AuthTabs() {
                 {/* Create Account Button */}
                 <Button
                   type="submit"
-                  className="w-full h-12 bg-accent text-accent-foreground hover:bg-accent/90 font-medium"
+                  className="w-full h-12 bg-amber-400 text-accent-foreground hover:bg-amber/80 font-medium"
                   disabled={isSigningUp || isGoogleAuth}
                 >
                   {isSigningUp ? (
