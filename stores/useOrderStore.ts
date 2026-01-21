@@ -291,11 +291,6 @@ export const useOrderStore = create<OrderState>()(
           totalOrders: state.totalOrders + 1,
         }));
 
-        toast({
-          title: "Order Placed Successfully! 🎉",
-          description: `Your order ${order.orderNumber} has been placed.`,
-        });
-
         return order;
       } catch (error) {
         console.error("Detailed error creating order:", error);

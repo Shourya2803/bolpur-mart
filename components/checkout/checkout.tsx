@@ -564,11 +564,6 @@ export default function Checkout() {
         setShowUpiDialog(false);
         setShowTimeDialog(false);
 
-        toast({
-          title: "Order Placed Successfully! 🎉",
-          description: `Your order ${order.orderNumber} has been placed.`,
-        });
-
         // The confirmation dialog will be shown by the useEffect watching currentOrder
       } else {
         throw new Error("Order creation returned null");
