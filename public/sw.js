@@ -1,4 +1,4 @@
-const CACHE_NAME = 'bolpur-mart-v2.2';
+const CACHE_NAME = 'bolpur-mart-v2.3'; // Bumped version
 const OFFLINE_URL = '/offline.html';
 const CACHE_LIMIT = 50 * 1024 * 1024; // 50MB
 
@@ -14,9 +14,7 @@ const STATIC_ASSETS = [
 async function checkCacheSizeAndPrune() {
   if ('storage' in navigator && 'estimate' in navigator.storage) {
     const { usage, quota } = await navigator.storage.estimate();
-    if (usage > CACHE_LIMIT) {
-      // Pruning logic - simpler to just clear old caches or specific large files
-      // For this implementation, we'll just log warning or clear all but current
+    if (usage && quota && usage > CACHE_LIMIT * 0.9) {
       caches.keys().then((names) => {
         names.forEach(name => {
           if (name !== CACHE_NAME) caches.delete(name);
@@ -48,6 +46,7 @@ self.addEventListener('activate', (event) => {
 });
 
 self.addEventListener('fetch', (event) => {
+  // Navigation fallback
   if (event.request.mode === 'navigate') {
     event.respondWith(
       fetch(event.request)
@@ -58,63 +57,76 @@ self.addEventListener('fetch', (event) => {
     return;
   }
 
-  if (!event.request.url.startsWith('http')) return;
-  if (event.request.method !== 'GET') return;
+  if (!event.request.url.startsWith('http') || event.request.method !== 'GET') {
+    return;
+  }
 
-  // Cache-First Strategy for static assets/images
-  if (event.request.destination === 'image' || event.request.destination === 'style' || event.request.destination === 'script') {
+  // Cache-First: Images, Styles, Scripts (FIXED)
+  if (event.request.destination === 'image' ||
+    event.request.destination === 'style' ||
+    event.request.destination === 'script') {
+
     event.respondWith(
       caches.open(CACHE_NAME).then((cache) => {
         return cache.match(event.request).then((cachedResponse) => {
-          const fetchedResponse = fetch(event.request).then((networkResponse) => {
+          if (cachedResponse) return cachedResponse;
+
+          return fetch(event.request).then((networkResponse) => {
+            // CLONE ONCE at start
+            const responseToCache = networkResponse.clone();
+
             if (!networkResponse || networkResponse.status !== 200 || networkResponse.type !== 'basic') {
               return networkResponse;
             }
 
-            try {
-              cache.put(event.request, networkResponse.clone());
-            } catch (err) {
-              console.warn('Failed to cache:', event.request.url, err);
-            }
+            // Cache the clone (safe)
+            cache.put(event.request, responseToCache).catch(err => {
+              console.warn('Cache put failed:', err);
+            });
+
             checkCacheSizeAndPrune();
-            return networkResponse;
+            return networkResponse; // Return original
+          }).catch(() => {
+            return caches.match('/');
           });
-          return cachedResponse || fetchedResponse;
         });
       })
     );
     return;
   }
 
-  // Network-First for API
+  // Network-First: API calls
   if (event.request.url.includes('/api/')) {
     event.respondWith(
-      fetch(event.request).then(response => {
-        return response;
-      }).catch(() => {
-        return caches.match(event.request);
-      })
+      fetch(event.request)
+        .catch(() => caches.match(event.request))
     );
     return;
   }
 
-  // Stale-While-Revalidate default
+  // Stale-While-Revalidate: Everything else (CRITICAL FIX)
   event.respondWith(
     caches.match(event.request).then((cachedResponse) => {
       const fetchPromise = fetch(event.request).then((networkResponse) => {
+        // CRITICAL: Clone ONCE immediately
+        const responseToCache = networkResponse.clone();
+
         if (!networkResponse || networkResponse.status !== 200 || networkResponse.type !== 'basic') {
           return networkResponse;
         }
 
+        // Cache clone (never touch original)
         caches.open(CACHE_NAME).then((cache) => {
-          try {
-            cache.put(event.request, networkResponse.clone());
-          } catch (err) {
-            console.warn('Failed to cache:', event.request.url, err);
-          }
+          cache.put(event.request, responseToCache).catch(err => {
+            console.warn('Cache put failed:', event.request.url, err);
+          });
         });
-        return networkResponse;
+
+        return networkResponse; // Always return original
+      }).catch(() => {
+        return caches.match(event.request) || caches.match('/');
       });
+
       return cachedResponse || fetchPromise;
     })
   );
